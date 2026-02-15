@@ -628,7 +628,9 @@ static struct imx9_uart_s g_lpuart1priv =
   .irq          = IMX9_IRQ_LPUART1,
   .parity       = CONFIG_LPUART1_PARITY,
   .bits         = CONFIG_LPUART1_BITS,
+#ifdef CONFIG_SPINLOCK
   .lock         = SP_UNLOCKED,
+#endif
   .stopbits2    = CONFIG_LPUART1_2STOP,
 #  if defined(CONFIG_SERIAL_OFLOWCONTROL) && defined(CONFIG_LPUART1_OFLOWCONTROL)
   .usects       = true,
@@ -688,7 +690,9 @@ static struct imx9_uart_s g_lpuart2priv =
   .irq          = IMX9_IRQ_LPUART2,
   .parity       = CONFIG_LPUART2_PARITY,
   .bits         = CONFIG_LPUART2_BITS,
+#ifdef CONFIG_SPINLOCK
   .lock         = SP_UNLOCKED,
+#endif
   .stopbits2    = CONFIG_LPUART2_2STOP,
 #  if defined(CONFIG_SERIAL_OFLOWCONTROL) && defined(CONFIG_LPUART2_OFLOWCONTROL)
   .usects       = true,
@@ -748,7 +752,9 @@ static struct imx9_uart_s g_lpuart3priv =
   .irq          = IMX9_IRQ_LPUART3,
   .parity       = CONFIG_LPUART3_PARITY,
   .bits         = CONFIG_LPUART3_BITS,
+#ifdef CONFIG_SPINLOCK
   .lock         = SP_UNLOCKED,
+#endif
   .stopbits2    = CONFIG_LPUART3_2STOP,
 #  if defined(CONFIG_SERIAL_OFLOWCONTROL) && defined(CONFIG_LPUART3_OFLOWCONTROL)
   .usects       = true,
@@ -808,7 +814,9 @@ static struct imx9_uart_s g_lpuart4priv =
   .irq          = IMX9_IRQ_LPUART4,
   .parity       = CONFIG_LPUART4_PARITY,
   .bits         = CONFIG_LPUART4_BITS,
+#ifdef CONFIG_SPINLOCK
   .lock         = SP_UNLOCKED,
+#endif
   .stopbits2    = CONFIG_LPUART4_2STOP,
 #  if defined(CONFIG_SERIAL_OFLOWCONTROL) && defined(CONFIG_LPUART4_OFLOWCONTROL)
   .usects       = true,
@@ -868,7 +876,9 @@ static struct imx9_uart_s g_lpuart5priv =
   .irq          = IMX9_IRQ_LPUART5,
   .parity       = CONFIG_LPUART5_PARITY,
   .bits         = CONFIG_LPUART5_BITS,
+#ifdef CONFIG_SPINLOCK
   .lock         = SP_UNLOCKED,
+#endif
   .stopbits2    = CONFIG_LPUART5_2STOP,
 #  if defined(CONFIG_SERIAL_OFLOWCONTROL) && defined(CONFIG_LPUART5_OFLOWCONTROL)
   .usects       = true,
@@ -928,7 +938,9 @@ static struct imx9_uart_s g_lpuart6priv =
   .irq          = IMX9_IRQ_LPUART6,
   .parity       = CONFIG_LPUART6_PARITY,
   .bits         = CONFIG_LPUART6_BITS,
+#ifdef CONFIG_SPINLOCK
   .lock         = SP_UNLOCKED,
+#endif
   .stopbits2    = CONFIG_LPUART6_2STOP,
 #  if defined(CONFIG_SERIAL_OFLOWCONTROL) && defined(CONFIG_LPUART6_OFLOWCONTROL)
   .usects       = true,
@@ -988,7 +1000,9 @@ static struct imx9_uart_s g_lpuart7priv =
   .irq          = IMX9_IRQ_LPUART7,
   .parity       = CONFIG_LPUART7_PARITY,
   .bits         = CONFIG_LPUART7_BITS,
+#ifdef CONFIG_SPINLOCK
   .lock         = SP_UNLOCKED,
+#endif
   .stopbits2    = CONFIG_LPUART7_2STOP,
 #  if defined(CONFIG_SERIAL_OFLOWCONTROL) && defined(CONFIG_LPUART7_OFLOWCONTROL)
   .usects       = true,
@@ -1048,7 +1062,9 @@ static struct imx9_uart_s g_lpuart8priv =
   .irq          = IMX9_IRQ_LPUART8,
   .parity       = CONFIG_LPUART8_PARITY,
   .bits         = CONFIG_LPUART8_BITS,
+#ifdef CONFIG_SPINLOCK
   .lock         = SP_UNLOCKED,
+#endif
   .stopbits2    = CONFIG_LPUART8_2STOP,
 #  if defined(CONFIG_SERIAL_OFLOWCONTROL) && defined(CONFIG_LPUART8_OFLOWCONTROL)
   .usects       = true,

@@ -36,9 +36,6 @@
 typedef struct
 {
 } spinlock_t;
-
-#  define SP_UNLOCKED {}
-#  define SP_LOCKED   {}
 #else
 
 /* The architecture specific spinlock.h header file must also provide the

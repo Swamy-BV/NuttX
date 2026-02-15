@@ -241,8 +241,6 @@ else
   INCDIR ?= "$(TOPDIR)/tools/incdir$(HOSTEXEEXT)"
 endif
 
-INCDIR_PREFIX ?= -I
-
 # PREPROCESS - Default macro to run the C pre-processor
 # Example: $(call PREPROCESS, in-file, out-file)
 #

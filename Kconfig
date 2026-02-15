@@ -2068,8 +2068,4 @@ config EXTERNALDIR
 	string
 	option env="EXTERNALDIR"
 
-config APPSBINDIR
-	string
-	option env="APPSBINDIR"
-
 source "$EXTERNALDIR/Kconfig"
