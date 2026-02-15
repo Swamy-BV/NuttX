@@ -39,7 +39,7 @@
 
 #include <nuttx/arch.h>
 #include <nuttx/clock.h>
-#include <nuttx/crc32.h>
+#include <crc32.h>
 #include <nuttx/irq.h>
 #include <nuttx/mutex.h>
 #include <nuttx/semaphore.h>

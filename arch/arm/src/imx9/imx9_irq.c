@@ -42,6 +42,8 @@
 #include "ram_vectors.h"
 #include "arm_internal.h"
 
+extern const void * const _vectors[];
+
 #ifdef CONFIG_IMX9_GPIO_IRQ
 #  include "imx9_gpio.h"
 #endif
@@ -61,6 +63,13 @@
 /* Given the address of a NVIC ENABLE register, this is the offset to
  * the corresponding CLEAR ENABLE register.
  */
+
+/* g_current_regs[] holds a references to the current interrupt level
+ * processing.  Access to g_current_regs[] must be through the macro
+ * CURRENT_REGS.
+ */
+
+volatile uint32_t *g_current_regs[1];
 
 #define NVIC_ENA_OFFSET    (0)
 #define NVIC_CLRENA_OFFSET (NVIC_IRQ0_31_CLEAR - NVIC_IRQ0_31_ENABLE)
@@ -492,8 +501,10 @@ void up_irqinitialize(void)
   irq_attach(IMX9_IRQ_BUSFAULT, arm_busfault, NULL);
   irq_attach(IMX9_IRQ_USAGEFAULT, arm_usagefault, NULL);
   irq_attach(IMX9_IRQ_PENDSV, imx9_pendsv, NULL);
+#if 0
   arm_enable_dbgmonitor();
   irq_attach(IMX9_IRQ_DBGMONITOR, arm_dbgmonitor, NULL);
+#endif
   irq_attach(IMX9_IRQ_RESERVED, imx9_reserved, NULL);
 #endif
 

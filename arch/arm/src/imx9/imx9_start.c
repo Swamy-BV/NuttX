@@ -34,7 +34,7 @@
 #include <nuttx/cache.h>
 #include <nuttx/init.h>
 #include <arch/board/board.h>
-#include <arch/barriers.h>
+#include "barriers.h"
 
 #include "arm_internal.h"
 #include "nvic.h"
@@ -107,7 +107,7 @@ static inline void imx9_tcmenable(void)
 {
   uint32_t regval;
 
-  UP_MB();
+  ARM_DSB();
 
   /* Enabled/disabled ITCM */
 
@@ -129,7 +129,7 @@ static inline void imx9_tcmenable(void)
 #endif
   putreg32(regval, NVIC_DTCMCR);
 
-  UP_MB();
+  ARM_DSB();
 }
 
 /****************************************************************************

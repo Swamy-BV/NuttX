@@ -97,7 +97,7 @@ static int imx9_mu_interrupt(int irq, void *context, void *args)
   uint32_t rsr = getreg32(IMX9_MU_RSR(dev->mubase));
   uint32_t gsr = getreg32(IMX9_MU_GSR(dev->mubase));
 
-  ipcinfo("MU irq=%d, SR=0x%04lx, RSR=0x%04lx, GSR=0x%04lx\n", irq, sr, rsr,
+  _info("MU irq=%d, SR=0x%04lx, RSR=0x%04lx, GSR=0x%04lx\n", irq, sr, rsr,
           gsr);
 
   if (sr & IMX9_MU_SR_RFP_FLAG)
@@ -212,7 +212,7 @@ int imx95_mu_send_msg_non_blocking(struct imx9_mudev_s *priv,
 {
   assert(reg_index < IMX9_MU_TR_REGARRAY_SIZE);
 
-  ipcinfo("MU send msg nonblocking idx=%ld, msg=%ld\n", reg_index, msg);
+  _info("MU send msg nonblocking idx=%ld, msg=%ld\n", reg_index, msg);
 
   if ((getreg32(IMX9_MU_TSR(priv->mubase)) & (1UL << reg_index)) == 0UL)
     {
@@ -228,7 +228,7 @@ void imx95_mu_send_msg(struct imx9_mudev_s *priv, uint32_t reg_index,
 {
   assert(reg_index < IMX9_MU_TR_REGARRAY_SIZE);
 
-  ipcinfo("MU send msg idx=%ld, msg=%ld\n", reg_index, msg);
+  _info("MU send msg idx=%ld, msg=%ld\n", reg_index, msg);
 
   /* Wait TX register to be empty. */
 

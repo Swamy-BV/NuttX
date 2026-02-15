@@ -34,7 +34,7 @@
 #include <sys/types.h>
 
 #include <arch/board/board.h>
-#include <arch/barriers.h>
+#include "barriers.h"
 
 #include "arm_internal.h"
 #include "hardware/imx9_gpc.h"
