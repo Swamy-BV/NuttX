@@ -69,7 +69,7 @@ extern const void * const _vectors[];
  * CURRENT_REGS.
  */
 
-volatile uint32_t *g_current_regs[1];
+volatile uint32_t *g_current_regs[CONFIG_SMP_NCPUS];
 
 #define NVIC_ENA_OFFSET    (0)
 #define NVIC_CLRENA_OFFSET (NVIC_IRQ0_31_CLEAR - NVIC_IRQ0_31_ENABLE)
