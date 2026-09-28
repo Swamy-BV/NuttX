@@ -1,5 +1,5 @@
 /****************************************************************************
- * boards/arm/imx9/imx95-evk/src/imx95_boardinit.c
+ * boards/arm/imx9/raven/src/imx95_boardinit.c
  *
  * SPDX-License-Identifier: Apache-2.0
  * SPDX-FileCopyrightText: 2024 NXP
@@ -28,7 +28,7 @@
 #include <nuttx/config.h>
 #include <nuttx/board.h>
 #include <stdint.h>
-#include "imx95-evk.h"
+#include "raven.h"
 
 /****************************************************************************
  * Pre-processor Definitions

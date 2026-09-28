@@ -1027,6 +1027,13 @@ config ARCH_BOARD_IMXRT1180_EVK
 		This is the board configuration for the port of NuttX to the NXP i.MXRT
 		evaluation kit, MIMXRT1180-EVK. This board features the IMXRT1189 MCU.
 
+config ARCH_BOARD_RAVEN
+	bool "Raven i.MX95 (FRDM bring-up)"
+	depends on ARCH_CHIP_IMX95_M7
+	---help---
+		Independent Raven board port, initially targeting FRDM-IMX95.
+		NuttShell starts from internal RAM with UART3 and SCMI pin control.
+
 config ARCH_BOARD_IMX95_EVK
 	bool "NXP i.MX 95 EVK"
 	depends on ARCH_CHIP_IMX9_CORTEX_M
@@ -4026,6 +4033,7 @@ config ARCH_BOARD
 	default "fmu-v6xrt"                    if ARCH_BOARD_FMU_V6XRT
 	default "imxrt1180-evk"                if ARCH_BOARD_IMXRT1180_EVK
 	default "imx93-qsb"                    if ARCH_BOARD_IMX93_QSB
+	default "raven"                        if ARCH_BOARD_RAVEN
 	default "imx95-evk"                    if ARCH_BOARD_IMX95_EVK
 	default "mr-navq95b"                   if ARCH_BOARD_MR_NAVQ95B
 	default "kwikstik-k40"                 if ARCH_BOARD_KWIKSTIK_K40
@@ -6056,3 +6064,7 @@ config BOARD_ETC_ROMFS_PASSWD_EXTRA_SUDOERS
 endif # BOARD_ETC_ROMFS_PASSWD_EXTRA_ENABLE
 
 endif # BOARD_ETC_ROMFS_PASSWD_ENABLE
+
+if ARCH_BOARD_RAVEN
+source "boards/arm/imx9/raven/Kconfig"
+endif
