@@ -1,5 +1,5 @@
 ############################################################################
-# boards/arm/imx9/raven/scripts/Make.defs
+# boards/arm/imx9/raven-frdm/scripts/Make.defs
 #
 # SPDX-License-Identifier: Apache-2.0
 # SPDX-FileCopyrightText: 2024 NXP

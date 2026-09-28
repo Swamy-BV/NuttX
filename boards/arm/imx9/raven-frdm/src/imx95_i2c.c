@@ -1,5 +1,5 @@
 /****************************************************************************
- * boards/arm/imx9/raven/src/imx95_bringup.c
+ * boards/arm/imx9/raven-frdm/src/imx95_i2c.c
  *
  * SPDX-License-Identifier: Apache-2.0
  * SPDX-FileCopyrightText: 2024 NXP
@@ -26,88 +26,63 @@
  ****************************************************************************/
 
 #include <nuttx/config.h>
-#include <nuttx/fs/fs.h>
+#include <nuttx/i2c/i2c_master.h>
+#include <nuttx/sensors/bmm150.h>
+#include <nuttx/debug.h>
+#include <errno.h>
 #include <sys/types.h>
-#include <syslog.h>
-#include "raven.h"
 
-#ifdef CONFIG_RPTUN
-#  include <imx9_rptun.h>
-#endif
-
-#ifdef CONFIG_RPMSG_UART
-#  include <nuttx/serial/uart_rpmsg.h>
-#endif
-
-#ifdef CONFIG_IMX9_FLEXCAN
-#  include "imx9_flexcan.h"
-#endif
+#include "imx9_lpi2c.h"
 
 /****************************************************************************
  * Public Functions
  ****************************************************************************/
 
-#ifdef CONFIG_RPMSG_UART
-void rpmsg_serialinit(void)
-{
-  uart_rpmsg_init("netcore", "proxy", 4096, true);
-}
-#endif
-
 /****************************************************************************
- * Name: imx_bringup
+ * Name: board_i2c_init
  *
  * Description:
- *   Bring up board features
+ *   Configure the I2C driver.
+ *
+ * Returned Value:
+ *   Zero (OK) is returned on success; A negated errno value is returned
+ *   to indicate the nature of any failure.
  *
  ****************************************************************************/
 
-int imx95_bringup(void)
+int imx95_i2c_initialize(void)
 {
-  int ret;
+  int ret = OK;
 
-#ifdef CONFIG_RPTUN
-  imx9_rptun_init("imx9-shmem", "netcore");
+#ifdef CONFIG_IMX9_LPI2C6
+  struct i2c_master_s *i2c;
+
+  i2c = imx9_i2cbus_initialize(6);
+  if (i2c == NULL)
+    {
+      i2cerr("ERROR: Failed to init I2C6 interface\n");
+      return -ENODEV;
+    }
+
+#ifdef CONFIG_SENSORS_BMM150
+  struct bmm150_config_s bmm150_config = {
+    .i2c = i2c,
+    .addr = 0x12,
+  };
+
+  bmm150_register_uorb(0, &bmm150_config);
 #endif
 
-#ifdef CONFIG_FS_PROCFS
-  /* Mount the procfs file system */
-
-  ret = nx_mount(NULL, "/proc", "procfs", 0, NULL);
+#ifdef CONFIG_I2C_DRIVER
+  ret = i2c_register(i2c, 0);
   if (ret < 0)
     {
-      syslog(LOG_ERR, "ERROR: Failed to mount procfs at /proc: %d\n", ret);
+      i2cerr("ERROR: Failed to register I2C6 driver: %d\n", ret);
+      imx9_i2cbus_uninitialize(i2c);
+      return ret;
     }
 #endif
 
-#if defined(CONFIG_IMX9_LPI2C)
-  /* Configure I2C peripheral interfaces */
-
-  ret = imx95_i2c_initialize();
-  if (ret < 0)
-    {
-      syslog(LOG_ERR, "Failed to initialize I2C driver: %d\n", ret);
-    }
 #endif
-
-#if defined(CONFIG_IMX9_LPSPI1)
-  /* Configure SPI peripheral interfaces */
-
-  ret = imx95_spi_initialize();
-  if (ret < 0)
-    {
-      syslog(LOG_ERR, "Failed to initialize SPI driver: %d\n", ret);
-    }
-#endif
-
-#ifdef CONFIG_IMX9_FLEXCAN1
-  imx9_caninitialize(1);
-#endif
-
-#ifdef CONFIG_IMX9_FLEXCAN2
-  imx9_caninitialize(2);
-#endif
-
-  UNUSED(ret);
   return OK;
 }

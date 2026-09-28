@@ -1,5 +1,5 @@
 ############################################################################
-# boards/arm/imx9/raven/src/Makefile
+# boards/arm/imx9/raven-frdm/src/Makefile
 #
 # SPDX-License-Identifier: Apache-2.0
 # SPDX-FileCopyrightText: 2024 NXP

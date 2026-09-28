@@ -1,5 +1,5 @@
 # ##############################################################################
-# boards/arm/imx9/raven/CMakeLists.txt
+# boards/arm/imx9/raven-frdm/CMakeLists.txt
 #
 # SPDX-License-Identifier: Apache-2.0
 #

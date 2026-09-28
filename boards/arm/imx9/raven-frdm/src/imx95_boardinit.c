@@ -1,5 +1,5 @@
 /****************************************************************************
- * boards/arm/imx9/raven/src/raven.h
+ * boards/arm/imx9/raven-frdm/src/imx95_boardinit.c
  *
  * SPDX-License-Identifier: Apache-2.0
  * SPDX-FileCopyrightText: 2024 NXP
@@ -21,78 +21,96 @@
  *
  ****************************************************************************/
 
-#ifndef __BOARDS_ARM_IMX9_RAVEN_SRC_RAVEN_H
-#define __BOARDS_ARM_IMX9_RAVEN_SRC_RAVEN_H
-
 /****************************************************************************
  * Included Files
  ****************************************************************************/
 
 #include <nuttx/config.h>
-
+#include <nuttx/board.h>
 #include <stdint.h>
+#include "raven-frdm.h"
 
 /****************************************************************************
- * Public Types
+ * Pre-processor Definitions
  ****************************************************************************/
 
 /****************************************************************************
- * Public Data
- ****************************************************************************/
-
-#ifndef __ASSEMBLY__
-
-/****************************************************************************
- * Public Functions Definitions
+ * Private Functions
  ****************************************************************************/
 
 /****************************************************************************
- * Name: imx95_bringup
+ * Public Functions
+ ****************************************************************************/
+
+/****************************************************************************
+ * Name: imx95_memory_initialize
  *
  * Description:
- *   Bring up board features
+ *   All i.MX8 architectures must provide the following entry point.  This
+ *   entry point is called early in the initialization before memory has
+ *   been configured.  This board-specific function is responsible for
+ *   configuring any on-board memories.
+ *
+ *   Logic in imx95_memory_initialize must be careful to avoid using any
+ *   global variables because those will be uninitialized at the time this
+ *   function is called.
+ *
+ * Input Parameters:
+ *   None
+ *
+ * Returned Value:
+ *   None
  *
  ****************************************************************************/
 
-#if defined(CONFIG_BOARDCTL) || defined(CONFIG_BOARD_LATE_INITIALIZE)
-int imx95_bringup(void);
-#endif
+void imx95_memory_initialize(void)
+{
+  /* SDRAM was initialized by a bootloader in the supported configurations. */
+}
 
 /****************************************************************************
- * Name: imx95_pwm_setup
+ * Name: imx95_board_initialize
  *
  * Description:
- *   Initialize PWM outputs
+ *   All i.MX8 architectures must provide the following entry point.  This
+ *   entry point is called in the initialization phase -- after
+ *   imx_memory_initialize and after all memory has been configured and
+ *   mapped but before any devices have been initialized.
+ *
+ * Input Parameters:
+ *   None
+ *
+ * Returned Value:
+ *   None
  *
  ****************************************************************************/
 
-#if defined(CONFIG_PWM)
-int imx95_pwm_setup(void);
+void imx9_boardinitialize(void)
+{
+#ifdef CONFIG_ARCH_LEDS
+  /* Configure on-board LEDs if LED support has been selected. */
+
 #endif
+}
 
 /****************************************************************************
- * Name: imx95_i2c_setup
+ * Name: board_late_initialize
  *
  * Description:
- *   Initialize I2C devices and driver
+ *   If CONFIG_BOARD_LATE_INITIALIZE is selected, then an additional
+ *   initialization call will be performed in the boot-up sequence to a
+ *   function called board_late_initialize(). board_late_initialize() will be
+ *   called immediately after up_intitialize() is called and just before the
+ *   initial application is started.  This additional initialization phase
+ *   may be used, for example, to initialize board-specific device drivers.
  *
  ****************************************************************************/
 
-#if defined(CONFIG_I2C_DRIVER)
-int imx95_i2c_initialize(void);
-#endif
+#ifdef CONFIG_BOARD_LATE_INITIALIZE
+void board_late_initialize(void)
+{
+  /* Perform board initialization */
 
-/****************************************************************************
- * Name: imx95_spi_setup
- *
- * Description:
- *   Initialize SPI devices and driver
- *
- ****************************************************************************/
-
-#if defined(CONFIG_SPI_DRIVER)
-int imx95_spi_initialize(void);
-#endif
-
-#endif /* __ASSEMBLY__ */
-#endif /* __BOARDS_ARM_IMX9_RAVEN_SRC_RAVEN_H */
+  imx95_bringup();
+}
+#endif /* CONFIG_BOARD_LATE_INITIALIZE */
