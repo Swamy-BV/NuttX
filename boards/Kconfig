@@ -867,6 +867,12 @@ config ARCH_BOARD_IMXRT1170_EVK
 		This is the board configuration for the port of NuttX to the NXP i.MXRT
 		evaluation kit, MIMXRT1170-EVK.  This board features the MIMXRT1176DVMAA MCU.
 
+config ARCH_BOARD_RAVEN_FRDM
+	bool "Raven FRDM i.MX95"
+	depends on ARCH_CHIP_IMX95_M7
+	---help---
+		FRDM-IMX95 bring-up board using the PX4-pinned NuttX baseline.
+
 config ARCH_BOARD_IMX95_EVK
 	bool "NXP i.MX 95 EVK"
 	depends on ARCH_CHIP_IMX9_CORTEX_M
@@ -3580,6 +3586,7 @@ config ARCH_BOARD
 	default "imxrt1060-evk"                if ARCH_BOARD_IMXRT1060_EVK
 	default "imxrt1064-evk"                if ARCH_BOARD_IMXRT1064_EVK
 	default "imxrt1170-evk"                if ARCH_BOARD_IMXRT1170_EVK
+	default "raven-frdm"                    if ARCH_BOARD_RAVEN_FRDM
 	default "imx95-evk"                    if ARCH_BOARD_IMX95_EVK
 	default "kwikstik-k40"                 if ARCH_BOARD_KWIKSTIK_K40
 	default "launchxl-cc1310"              if ARCH_BOARD_LAUNCHXL_CC1310
@@ -5326,3 +5333,7 @@ config BOARD_MEMORY_RANGE
 		end: end address of memory range
 		flags: Executable 0x1, Writable 0x2, Readable 0x4
 		example:{0x1000,0x2000,0x4},{0x2000,0x3000,0x6},{0x3000,0x4000,0x7} ... {0x0,0x0,0x0}
+
+if ARCH_BOARD_RAVEN_FRDM
+source "boards/arm/imx9/raven-frdm/Kconfig"
+endif

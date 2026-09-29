@@ -1,5 +1,5 @@
 /****************************************************************************
- * boards/arm/imx9/imx95-evk/include/board.h
+ * boards/arm/imx9/raven-frdm/include/board.h
  *
  * SPDX-License-Identifier: Apache-2.0
  * SPDX-FileCopyrightText: 2024 NXP
@@ -21,8 +21,8 @@
  *
  ****************************************************************************/
 
-#ifndef __BOARDS_ARM_IMX9_IMX95_EVK_INCLUDE_BOARD_H
-#define __BOARDS_ARM_IMX9_IMX95_EVK_INCLUDE_BOARD_H
+#ifndef __BOARDS_ARM_IMX9_RAVEN_FRDM_INCLUDE_BOARD_H
+#define __BOARDS_ARM_IMX9_RAVEN_FRDM_INCLUDE_BOARD_H
 
 /****************************************************************************
  * Included Files
@@ -183,4 +183,4 @@ extern "C"
 #endif
 
 #endif /* __ASSEMBLY__ */
-#endif /* __BOARDS_ARM_IMX9_IMX95_EVK_INCLUDE_BOARD_H */
+#endif /* __BOARDS_ARM_IMX9_RAVEN_FRDM_INCLUDE_BOARD_H */

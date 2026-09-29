@@ -1,5 +1,5 @@
 /****************************************************************************
- * boards/arm/imx9/imx95-evk/src/imx95_bringup.c
+ * boards/arm/imx9/raven-frdm/src/imx95_bringup.c
  *
  * SPDX-License-Identifier: Apache-2.0
  * SPDX-FileCopyrightText: 2024 NXP
@@ -29,7 +29,7 @@
 #include <nuttx/fs/fs.h>
 #include <sys/types.h>
 #include <syslog.h>
-#include "imx95-evk.h"
+#include "raven-frdm.h"
 
 #ifdef CONFIG_RPTUN
 #  include <imx9_rptun.h>

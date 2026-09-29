@@ -1,5 +1,5 @@
 /****************************************************************************
- * boards/arm/imx9/imx95-evk/src/imx95-evk.h
+ * boards/arm/imx9/raven-frdm/src/raven-frdm.h
  *
  * SPDX-License-Identifier: Apache-2.0
  * SPDX-FileCopyrightText: 2024 NXP
@@ -21,8 +21,8 @@
  *
  ****************************************************************************/
 
-#ifndef __BOARDS_ARM_IMX9_IMX95_EVK_SRC_IMX95_EVK_H
-#define __BOARDS_ARM_IMX9_IMX95_EVK_SRC_IMX95_EVK_H
+#ifndef __BOARDS_ARM_IMX9_RAVEN_FRDM_SRC_RAVEN_FRDM_H
+#define __BOARDS_ARM_IMX9_RAVEN_FRDM_SRC_RAVEN_FRDM_H
 
 /****************************************************************************
  * Included Files
@@ -95,4 +95,4 @@ int imx95_spi_initialize(void);
 #endif
 
 #endif /* __ASSEMBLY__ */
-#endif /* __BOARDS_ARM_IMX9_IMX95_EVK_SRC_IMX95_EVK_H */
+#endif /* __BOARDS_ARM_IMX9_RAVEN_FRDM_SRC_RAVEN_FRDM_H */
