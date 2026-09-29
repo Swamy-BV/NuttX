@@ -1,5 +1,5 @@
 /****************************************************************************
- * boards/arm/imx95/imx95-evk/scripts/itcm.ld
+ * boards/arm/imx95/raven-frdm/scripts/itcm.ld
  *
  * SPDX-License-Identifier: Apache-2.0
  * SPDX-FileCopyrightText: 2024 NXP

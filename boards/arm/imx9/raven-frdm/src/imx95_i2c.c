@@ -1,5 +1,5 @@
 /****************************************************************************
- * boards/arm/imx9/imx95-evk/src/imx95_i2c.c
+ * boards/arm/imx9/raven-frdm/src/imx95_i2c.c
  *
  * SPDX-License-Identifier: Apache-2.0
  * SPDX-FileCopyrightText: 2024 NXP
